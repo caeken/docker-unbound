@@ -10,6 +10,7 @@ ADD assets/sha256checksum sha256checksum
 RUN apt-get update && apt-get install -y \
 	build-essential \
 	tar \
+	zip \
 	wget \
 	libssl-dev \
 	libevent-dev \

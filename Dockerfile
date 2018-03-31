@@ -2,6 +2,7 @@ FROM ubuntu:trusty
 MAINTAINER patrick@oberdorf.net
 
 ENV VERSION 1.6.2
+ENV CONFIGURL http://localhost/default.zip
 
 WORKDIR /usr/local/src/
 ADD assets/sha256checksum sha256checksum
@@ -57,4 +58,4 @@ RUN chmod +x /start.sh
 EXPOSE 53/udp
 EXPOSE 53
 
-CMD ["/start.sh"]
+CMD ["sh","-c","cd /usr/local/etc/unbound/ && rm -rf *.conf && wget -O default.zip $CONFIGURL && unzip default.zip && /usr/local/sbin/unbound -c /usr/local/etc/unbound/unbound.conf -d -v"]
